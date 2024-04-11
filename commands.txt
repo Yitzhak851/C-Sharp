@@ -1,0 +1,7 @@
+# cmd  => dotnet
+
+# cmd [path] => dotnet new console --force
+
+# cmd [path] => dotnet restore
+
+# cmd [path] => dotnet run
