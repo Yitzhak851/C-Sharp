@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("kfir")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b312698f3579145dc0aeeb7a7fde223c406f48ff")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+57ce0a1504692176de3cf07787877d76c7981e6b")]
 [assembly: System.Reflection.AssemblyProductAttribute("kfir")]
 [assembly: System.Reflection.AssemblyTitleAttribute("kfir")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
