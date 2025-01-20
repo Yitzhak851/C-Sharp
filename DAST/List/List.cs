@@ -13,9 +13,7 @@ public class CustomList<T>
     }
 
     public int Count => _count;
-
     public int Capacity => _items.Length;
-
     public T this[int index]
     {
         get

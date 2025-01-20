@@ -1,0 +1,16 @@
+https://www.geeksforgeeks.org/how-to-execute-c-sharp-program-on-cmd-command-line/
+
+
+Step 1: 
+Go to Control Panel -> System and Security -> System. Under Advanced System Setting option click on Environment Variables as shown below:
+
+
+
+Step 2: Compile your C# source code with the use of command:
+    csc File_name.cs
+
+Step 3: Now there are two ways to execute the Hello.exe. 
+    1) First, you have to simply type the filename i.e Hello on the cmd and it will give the output. 
+    2) Second, you can go to the directory where you saved your program and there you find filename.exe. 
+
+You have to simply double-click that file and it will give the output.

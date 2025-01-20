@@ -1,0 +1,64 @@
+using System; // using basic commands of system
+using System.Collections.Generic; // using List
+
+class App
+{
+    static void Main()
+    {
+        List<int> L = new List<int> { 18, 5, 47, 56, 15, 78, 19, 49, 91, 60, 59, 17 }; // Input list of integers
+        List<List<int>> result = GroupNumbers(L); // Call the function and get the result
+        // Display the result manually
+        for (int i = 0; i < result.Count; i++)
+        {
+            // Print range
+            Console.Write("Range " + (i * 10) + "-" + (i * 10 + 9) + ": ");
+            // Print numbers in the list
+            for (int j = 0; j < result[i].Count; j++)
+            {
+                Console.Write(result[i][j]);
+                if (j < result[i].Count - 1) // Add comma between numbers
+                {
+                    Console.Write(", ");
+                }
+            }
+            Console.WriteLine(); // Move to the next line
+        }
+    }
+
+    static List<List<int>> GroupNumbers(List<int> L)
+    {
+        List<List<int>> groupedLists = new List<List<int>>(); // Initialize the 10 lists
+        for (int i = 0; i < 10; i++)
+        {
+            groupedLists.Add(new List<int>());
+        }
+        // Add numbers to their corresponding lists
+        foreach (int num in L)
+        {
+            int rangeIndex = num / 10;
+            groupedLists[rangeIndex].Add(num);
+        }
+        // Ensure each sublist starts with the largest value
+        for (int i = 0; i < groupedLists.Count; i++)
+        {
+            if (groupedLists[i].Count > 0)
+            {
+                int maxValue = MaxValue(groupedLists[i]);
+                groupedLists[i].Remove(maxValue);
+                groupedLists[i].Insert(0, maxValue);
+            }
+        }
+        return groupedLists;
+    }
+
+    static int MaxValue(List<int> list)
+    {
+        int max = int.MinValue;
+        foreach (int num in list)
+        {
+            if (num > max)
+                max = num;
+        }
+        return max;
+    }
+}

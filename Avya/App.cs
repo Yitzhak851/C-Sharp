@@ -1,61 +1,55 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
-class App
+class Program
 {
-    static void Main()
+    static List<int>[] CategorizeNumbers(List<int> numbers)
     {
-        // Input list of integers
-        List<int> L = new List<int> { 18, 5, 47, 56, 15, 78, 19, 49, 91, 60, 59, 17 };
-
-        // Call the function and get the result
-        List<List<int>> result = GroupNumbers(L);
-
-        // Display the result
-        for (int i = 0; i < result.Count; i++)
-        {
-            Console.WriteLine($"Range {i * 10}-{i * 10 + 9}: {string.Join(", ", result[i])}");
-        }
-    }
-
-    static List<List<int>> GroupNumbers(List<int> L)
-    {
-        // Initialize the 10 lists
-        List<List<int>> groupedLists = new List<List<int>>();
+        List<int>[] categorized = new List<int>[10]; // Create an array of 10 lists
         for (int i = 0; i < 10; i++)
         {
-            groupedLists.Add(new List<int>());
+            categorized[i] = new List<int>();
         }
-
-        // Add numbers to their corresponding lists
-        foreach (int num in L)
+        // Categorize numbers into their respective ranges
+        foreach (int number in numbers)
         {
-            int rangeIndex = num / 10;
-            groupedLists[rangeIndex].Add(num);
+            int index = number / 10;
+            categorized[index].Add(number);
         }
-
-        // Ensure each sublist starts with the largest value
-        for (int i = 0; i < groupedLists.Count; i++)
+        // Ensure the first element in each list is the largest
+        for (int i = 0; i < 10; i++)
         {
-            if (groupedLists[i].Count > 0)
+            if (categorized[i].Count > 0)
             {
-                int maxValue = MaxValue(groupedLists[i]);
-                groupedLists[i].Remove(maxValue);
-                groupedLists[i].Insert(0, maxValue);
+                categorized[i] = categorized[i].OrderByDescending(x => x).ToList();
             }
         }
-
-        return groupedLists;
+        return categorized;
     }
 
-    static int MaxValue(List<int> list)
+    static void PrintResult(List<int>[] result)
     {
-        int max = int.MinValue;
-        foreach (int num in list)
+        Console.WriteLine("Categorized Numbers:");
+        for (int i = 0; i < result.Length; i++)
         {
-            if (num > max)
-                max = num;
+            Console.WriteLine(string.Format("Range {0}-{1}:", i * 10, i * 10 + 9));
+            if (result[i].Count > 0)
+            {
+                Console.WriteLine(string.Format("  Largest: {0}", result[i][0]));
+                Console.WriteLine("  All: " + string.Join(", ", result[i]));
+            }
+            else
+            {
+                Console.WriteLine("  No numbers in this range.");
+            }
         }
-        return max;
+    }
+
+    static void Main()
+    {
+        List<int> numbers = new List<int> { 18, 5, 47, 56, 15, 78, 19, 49, 91, 60, 59, 17 };
+        List<int>[] result = CategorizeNumbers(numbers); // Get the categorized numbers
+        PrintResult(result); // Print the results
     }
 }
